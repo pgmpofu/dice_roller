@@ -15,20 +15,25 @@
         android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/empty_dice"
         tools:src="@drawable/empty_dice"/>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="50dp"/>
-    </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="103dp"
+            android:layout_height="50dp" />
 
     <ImageView
+        android:id="@+id/microphone"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:src="@drawable/microphone"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/guessButton"
         android:layout_width="wrap_content"

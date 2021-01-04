@@ -1,7 +1,11 @@
 package com.ai.diceroller
 
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -12,6 +16,32 @@ class MainActivity : AppCompatActivity() {
         guessButton.setOnClickListener {
             guess();
         }
+        microphone.setOnClickListener{
+            guessAudio();
+        }
+        userInput.addTextChangedListener{
+            guessText()
+        }
+    }
+
+    private fun guessText() {
+        microphone.isVisible = false
+        var input = findViewById<EditText>(R.id.userInput);
+        when {
+            input !is Number -> {
+                Toast.makeText(applicationContext, "Input must be a valid number", Toast.LENGTH_LONG);
+            }
+            input.toInt() <= 0 -> {
+                Toast.makeText(applicationContext, "Number must be greater than 0", Toast.LENGTH_LONG);
+            }
+            input.toInt() > 6 -> {
+                Toast.makeText(applicationContext, "Number must be 6 or less", Toast.LENGTH_LONG);
+            }
+        }
+    }
+
+    private fun guessAudio() {
+        userInput.isVisible = false
     }
 
     private fun guess() {
