@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Dice Roller</string>
     <string name="guess">Guess</string>
+    <string name="score">Score</string>
+    <string name="score_value">0</string>
+    <string name="title_guess_number">Guess The Number</string>
+    <string name="enter_number">Enter a number between 1 and 6</string>
+    <string name="incorrect_guess">"Your guess was incorrect"</string>
+    <string name="correct_guess">"Your guess was correct!!"</string>
 </resources>

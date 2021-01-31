@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.GuessByText">
+
+    <EditText
+        android:id="@+id/textInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="@string/enter_number"
+        android:inputType="number"
+        android:padding="20dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/guessButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guess"
+        app:layout_constraintEnd_toEndOf="@id/textInput"
+        app:layout_constraintStart_toStartOf="@id/textInput"
+        app:layout_constraintTop_toBottomOf="@id/textInput" />
+
+    <ImageView
+        android:id="@+id/diceImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="731dp"
+        app:srcCompat="@drawable/empty_dice"
+        app:layout_constraintTop_toBottomOf="@id/guessButton"
+        app:layout_constraintStart_toStartOf="@id/guessButton"
+        app:layout_constraintEnd_toEndOf="@id/guessButton" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/diceImage"
+        app:layout_constraintStart_toStartOf="@id/diceImage"
+        app:layout_constraintEnd_toEndOf="@id/diceImage"
+        android:textAlignment="center"
+        android:gravity="center">
+
+    <TextView
+        android:id="@+id/scoreTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_700"
+        android:text="@string/score"
+        android:textAlignment="center"
+        android:padding="50dp"/>
+
+        <TextView
+            android:id="@+id/scoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_700"
+            android:text="@string/score_value"
+            android:textAlignment="center"
+            android:padding="50dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
