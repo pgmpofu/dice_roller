@@ -41,33 +41,43 @@
         android:contentDescription="@string/dice_img_desc" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/diceImage"
-        app:layout_constraintStart_toStartOf="@id/diceImage"
-        app:layout_constraintEnd_toEndOf="@id/diceImage"
         android:textAlignment="center"
-        android:gravity="center">
+        app:layout_constraintEnd_toEndOf="@id/diceImage"
+        app:layout_constraintStart_toStartOf="@id/diceImage"
+        app:layout_constraintTop_toBottomOf="@id/diceImage">
 
         <TextView
-        android:id="@+id/scoreTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/purple_700"
-        android:text="@string/score"
-        android:textAlignment="center"
-        android:padding="50dp"/>
+            android:id="@+id/scoreTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="50dp"
+            android:text="@string/score"
+            android:textAlignment="center"
+            android:textColor="@color/purple_700" />
 
         <TextView
             android:id="@+id/scoreValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/purple_700"
-            android:text="@string/score_value"
+            android:padding="50dp"
             android:textAlignment="center"
-            android:padding="50dp"/>
+            android:textColor="@color/purple_700" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/done_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

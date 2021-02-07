@@ -5,14 +5,28 @@ import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.ai.diceroller.R
+import com.ai.diceroller.database.AppDatabase
+import com.ai.diceroller.database.ScoreDao
+import com.ai.diceroller.model.Score
+import kotlinx.android.synthetic.main.activity_guess_by_voice.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var scoreDb : AppDatabase
+    private lateinit var scoreDao: ScoreDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        scoreDb = Room.databaseBuilder(this, AppDatabase::class.java, "database-name").build()
+        scoreDao = scoreDb.scoreDao()
+
+        val currentScores : List<Score> = scoreDao.getAll()
+        currentScores[0].toString().also { scoreValue.text = it }
 
         editImage.setOnClickListener{
             var guessByText = Intent(this, GuessByText::class.java)

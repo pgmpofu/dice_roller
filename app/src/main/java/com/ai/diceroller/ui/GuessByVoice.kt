@@ -1,26 +1,29 @@
 package com.ai.diceroller.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.ai.diceroller.R
-import kotlinx.android.synthetic.main.activity_guess_by_text.*
+import com.ai.diceroller.database.AppDatabase
+import com.ai.diceroller.database.ScoreDao
 import kotlinx.android.synthetic.main.activity_guess_by_voice.*
-import kotlinx.android.synthetic.main.activity_guess_by_voice.diceImage
-import kotlinx.android.synthetic.main.activity_guess_by_voice.scoreValue
-import java.lang.NumberFormatException
 import java.util.*
 
 class   GuessByVoice : AppCompatActivity() {
 
-    lateinit var guessText: String
+    private lateinit var guessText: String
+    private lateinit var scoreDb : AppDatabase
+    private lateinit var scoreDao: ScoreDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guess_by_voice)
 
         guessText = savedInstanceState?.get("mGuessText").toString()
+        scoreDb = Room.databaseBuilder(this, AppDatabase::class.java, "database-name").build()
+        scoreDao = scoreDb.scoreDao()
 
         guess(guessText)
 
@@ -45,8 +48,10 @@ class   GuessByVoice : AppCompatActivity() {
                 Toast.makeText(applicationContext, R.string.correct_guess, Toast.LENGTH_LONG).show()
                 scoreValue.text = Editable.Factory.getInstance().newEditable(
                         scoreValue.text.toString()
-                                .toInt().plus(1).toString()
-                )
+                                .toInt().plus(1).toString())
+                var score = scoreDao.getAll()[0]
+                score.value?.plus(1)
+                scoreDao.update(score)
             } else {
                 Toast.makeText(applicationContext, R.string.incorrect_guess, Toast.LENGTH_LONG).show()
             }

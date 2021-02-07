@@ -4,20 +4,36 @@ import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.ai.diceroller.R
+import com.ai.diceroller.database.AppDatabase
+import com.ai.diceroller.database.ScoreDao
 import kotlinx.android.synthetic.main.activity_guess_by_text.*
+import kotlinx.android.synthetic.main.activity_guess_by_text.diceImage
+import kotlinx.android.synthetic.main.activity_guess_by_text.scoreValue
+import kotlinx.android.synthetic.main.activity_guess_by_voice.*
 import java.lang.NumberFormatException
 import java.util.*
 
 class GuessByText : AppCompatActivity() {
-//    var validInput:Boolean = false
+
+    private lateinit var scoreDb : AppDatabase
+    private lateinit var scoreDao: ScoreDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guess_by_text)
         scoreValue.text = 0.toString()
+
+        scoreDb = Room.databaseBuilder(this, AppDatabase::class.java, "database-name").build()
+        scoreDao = scoreDb.scoreDao()
+
         guessButton.setOnClickListener {
                 guess()
+        }
+
+        done_button.setOnClickListener{
+            finish()
         }
     }
 
@@ -39,8 +55,10 @@ class GuessByText : AppCompatActivity() {
                 makeText(applicationContext, R.string.correct_guess, LENGTH_LONG).show()
                 scoreValue.text = Editable.Factory.getInstance().newEditable(
                     scoreValue.text.toString()
-                        .toInt().plus(1).toString()
-                )
+                        .toInt().plus(1).toString())
+                var score = scoreDao.getAll()[0]
+                score.value?.plus(1)
+                scoreDao.update(score)
             } else {
                 makeText(applicationContext, R.string.incorrect_guess, LENGTH_LONG).show()
             }
