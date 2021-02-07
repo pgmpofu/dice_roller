@@ -17,7 +17,8 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/guessButton"
@@ -36,7 +37,8 @@
         app:srcCompat="@drawable/empty_dice"
         app:layout_constraintTop_toBottomOf="@id/guessButton"
         app:layout_constraintStart_toStartOf="@id/guessButton"
-        app:layout_constraintEnd_toEndOf="@id/guessButton" />
+        app:layout_constraintEnd_toEndOf="@id/guessButton"
+        android:contentDescription="@string/dice_img_desc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +50,7 @@
         android:textAlignment="center"
         android:gravity="center">
 
-    <TextView
+        <TextView
         android:id="@+id/scoreTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

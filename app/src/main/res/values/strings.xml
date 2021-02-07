@@ -7,4 +7,6 @@
     <string name="enter_number">Enter a number between 1 and 6</string>
     <string name="incorrect_guess">"Your guess was incorrect"</string>
     <string name="correct_guess">"Your guess was correct!!"</string>
+    <string name="dice_img_desc">An image of dice</string>
+    <string name="done_button">Done</string>
 </resources>
